@@ -11,21 +11,30 @@ npm install --save maybedone
 
 ## usage
 
-const md = maybedone(cb, predicateFn|times);
+**maybedone(cb, predicateFn|times)**
 
-**cb**: underlying callback
+Arguments:
 
-**predicateFn**: a function that must return true before cb is called
+- **cb** underlying callback
+- **predicateFn** a function that must return
+true before cb is called
+- **times** number of times `md` must be called
+before the callback is called
 
-**times**: number of times `md` must be called before the callback is
-called
+Return:
 
-When called with an error, md will immediately call the callback with
-the error.
+maybedone returns a function `md` which has the following
+behavior:
 
-md will always at most call a callback once.
+1) When called with an error, md will immediately call the
+   underlying callback with the error.
 
-md does not throw errors even if it is called too many times.
+2) Will always at most call a callback once.
+
+3) Does not throw errors even if it is called too many times.
+
+4) Calls the underlying callback after `times` times or
+   `predicateFn()` returns true.
 
 ## Examples
 
