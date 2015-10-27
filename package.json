@@ -1,0 +1,49 @@
+{
+  "name": "maybedone",
+  "description": "maybe call a callback if predicate returns true of callback called n times",
+  "main": "./lib",
+  "scripts": {
+    "lint": "eslint ./src ./test",
+    "build": "babel ./src --out-dir ./lib --copy-files",
+    "clean": "rm -rf ./lib",
+    "pretest": "npm run lint",
+    "test": "babel-node test/*.js",
+    "preversion": "npm test",
+    "version:auto": "npm version $(conventional-recommended-bump --preset=angular)",
+    "postversion": "git push --tags && git push",
+    "publish:auto": "npm run version:auto && npm publish",
+    "prepublish": "npm run build"
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
+  },
+  "keywords": [],
+  "author": "Olivier Lalonde <olalonde@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/olalonde/maybedone",
+  "dependencies": {
+    "convict": "^1.0.1",
+    "debug": "^2.2.0",
+    "nconf": "^0.8.2"
+  },
+  "devDependencies": {
+    "babel": "^5.8.29",
+    "babel-eslint": "^4.1.3",
+    "conventional-recommended-bump": "0.0.3",
+    "cz-conventional-changelog": "^1.1.2",
+    "eslint": "^1.7.3",
+    "eslint-config-airbnb": "^0.1.0",
+    "tape": "^4.2.2"
+  },
+  "version": "0.0.1",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olalonde/maybedone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/olalonde/maybedone/issues"
+  }
+}
